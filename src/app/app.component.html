@@ -1,0 +1,57 @@
+<div class="container">
+    <br>
+        <div class="form-inline">
+            <div class="form-group">
+                <div class="col-md-8">
+                    <label>Наименование:</label>
+                    <input class="form-control col-md-8" [(ngModel)]="text" placeholder = "Наименование" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Стоимость:</label>
+                    <input type="number" class="form-control" [(ngModel)]="price" placeholder="Стоимость" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Количество:</label>
+                    <input type="number" class="form-control" [(ngModel)]="quantity" placeholder="Количество" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Куплено:</label>
+                    <input type="checkbox" [(ngModel)]="check"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <button class="btn btn-xs btn-info" title="Добавить" (click)="addItem(text, price, quantity, check)"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Список покупок</th>
+                    <th>Стоимость</th>
+                    <th>Количество</th>
+                    <th style="width: 60px">Статус</th>
+                    <th style="width: 30px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items; let i = index ">
+                    <td>{{item.name}}</td>
+                    <td>{{item.cost}}</td>
+                    <td>{{item.amount}}</td>
+                    <td style="width: 120px"><span *ngIf="item.status" style="color:green">Оплачено</span><span *ngIf="!item.status" style="color:red">Не оплачено</span></td>
+                    <td style="width: 30px"><button type="button" class="btn btn-xs btn-info" title="Удалить" style="cursor: pointer" (click)="removeItem(item, i)"><span class="glyphicon glyphicon-minus"></span></button></td>
+                </tr>
+            </tbody>
+        </table>
+     <button type="button" class="btn btn-xs btn-info" title="Посчитать сумму" style="cursor: pointer" (click)="countPrice()">Посчитать сумму</button>
+     Итоговая сумма: {{Price}} <span class="glyphicon glyphicon glyphicon-rub"></span>
+</div>
